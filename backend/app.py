@@ -5,11 +5,13 @@ from config import Config
 from extensions import db, jwt
 from routes.productos import productos_bp
 from routes.auth import auth_bp  
+from flask_cors import CORS
 
 load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(Config)
 
 
