@@ -91,7 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
       stock: parseInt(document.getElementById('stock').value) || 0
     };
 
-    const url = modoEdicion ? `${API}/productos/${idProductoEditando}` : `${API}/productos`;
+    console.log("Producto a enviar:", producto); // 
+
+    const url = modoEdicion ? `${API}/productos/${idProductoEditando}` : `${API}/productos/`;
     const method = modoEdicion ? 'PUT' : 'POST';
 
     const res = await fetch(url, {
@@ -108,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modalProducto.hide();
       cargarProductos();
     } else {
-      const err = await res.json();
+      const err = await res.json().catch(() => ({ error: 'Error inesperado del servidor' }));
       Swal.fire('Error', err.error || 'Error al guardar el producto', 'error');
     }
   });

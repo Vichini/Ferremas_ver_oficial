@@ -1,4 +1,3 @@
-# backend/schemas/producto_schema.py
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from models.producto import Producto
 
